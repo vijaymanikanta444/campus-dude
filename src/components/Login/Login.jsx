@@ -42,17 +42,36 @@ function Login() {
     [isAuthenticated],
   );
 
+  //   const handleLogin = async () => {
+  //     const result = await instance.loginPopup(loginRequest);
+
+  //     console.log({ result });
+
+  //     if (result.account) {
+  //       instance.setActiveAccount(result.account);
+  //       storeAuthSession(result.account);
+  //     }
+
+  //     navigate("/dashboard", { replace: true });
+  //   };
+
   const handleLogin = async () => {
-    const result = await instance.loginPopup(loginRequest);
+    try {
+      console.log("Before loginPopup");
 
-    console.log({ result });
+      const result = await instance.loginPopup(loginRequest);
 
-    if (result.account) {
-      instance.setActiveAccount(result.account);
-      storeAuthSession(result.account);
+      console.log("After loginPopup");
+      console.log(result);
+      if (result.account) {
+        instance.setActiveAccount(result.account);
+        storeAuthSession(result.account);
+      }
+
+      navigate("/dashboard", { replace: true });
+    } catch (error) {
+      console.error("Login Error", error);
     }
-
-    navigate("/dashboard", { replace: true });
   };
 
   return (

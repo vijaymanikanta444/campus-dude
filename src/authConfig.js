@@ -6,12 +6,6 @@ const redirectUri =
   import.meta.env.VITE_AZURE_AD_REDIRECT_URI ??
   `${window.location.origin}/auth.html`;
 
-console.log({
-  redirectUri,
-  clientId,
-  tenantId,
-});
-
 export const requestedScopes = ["email", "openid", "profile", "User.Read"];
 
 export const authSessionStorageKey = "viet-auth-session";
