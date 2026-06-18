@@ -55,20 +55,28 @@ function Login() {
   //     navigate("/dashboard", { replace: true });
   //   };
 
+  //   const handleLogin = async () => {
+  //     try {
+  //       console.log("Before loginPopup");
+
+  //       const result = await instance.loginPopup(loginRequest);
+
+  //       console.log("After loginPopup");
+  //       console.log(result);
+  //       if (result.account) {
+  //         instance.setActiveAccount(result.account);
+  //         storeAuthSession(result.account);
+  //       }
+
+  //       navigate("/dashboard", { replace: true });
+  //     } catch (error) {
+  //       console.error("Login Error", error);
+  //     }
+  //   };
+
   const handleLogin = async () => {
     try {
-      console.log("Before loginPopup");
-
-      const result = await instance.loginPopup(loginRequest);
-
-      console.log("After loginPopup");
-      console.log(result);
-      if (result.account) {
-        instance.setActiveAccount(result.account);
-        storeAuthSession(result.account);
-      }
-
-      navigate("/dashboard", { replace: true });
+      await instance.loginRedirect(loginRequest);
     } catch (error) {
       console.error("Login Error", error);
     }
