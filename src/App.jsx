@@ -10,14 +10,6 @@ function App() {
   const isAuthenticated = useIsAuthenticated();
   const { instance, inProgress } = useMsal();
 
-  // useEffect(() => {
-  //   instance.handleRedirectPromise().then((response) => {
-  //     if (response?.account) {
-  //       instance.setActiveAccount(response.account);
-  //     }
-  //   });
-  // }, [instance]);
-
   useEffect(() => {
     const account = instance.getActiveAccount() || instance.getAllAccounts()[0];
     console.log({ account, isAuthenticated });

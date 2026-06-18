@@ -64,11 +64,6 @@ function AuthLayout({ children }) {
     closeMenu();
     clearAuthSession();
 
-    // it will logout the user from both local and IDP
-    // await instance.logoutPopup({
-    //   postLogoutRedirectUri: `${window.location.origin}/auth.html`,
-    // });
-
     // it will logout the user from local only, but not from IDP
     instance.clearCache();
 
