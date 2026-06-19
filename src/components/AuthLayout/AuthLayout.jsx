@@ -74,7 +74,7 @@ function AuthLayout({ children }) {
     <Shell>
       <Header>
         <Brand>
-          <Logo src={vietLogo} alt="VIET logo" />
+          <Logo src={vietLogo} alt="VIET logo" onClick={() => navigate("/")} />
           <BrandCopy>
             <BrandTitle>VIET</BrandTitle>
             <BrandSubtitle>
