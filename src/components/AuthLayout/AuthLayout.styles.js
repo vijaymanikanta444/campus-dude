@@ -39,6 +39,7 @@ export const Brand = styled.div`
   align-items: center;
   gap: 14px;
   min-width: 0;
+  cursor: pointer;
 `;
 
 export const Logo = styled.img`
