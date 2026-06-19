@@ -62,9 +62,9 @@ function Login() {
             <Typography variant="h4" component="h1" fontWeight={800}>
               Welcome back
             </Typography>
-            <Typography variant="body1" color="text.secondary" maxWidth="50ch">
+            {/* <Typography variant="body1" color="text.secondary" maxWidth="50ch">
               Sign in to access the React SPA using your Microsoft account.
-            </Typography>
+            </Typography> */}
           </Stack>
 
           <ButtonRow>

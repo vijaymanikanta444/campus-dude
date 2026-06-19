@@ -11,10 +11,21 @@ import {
   ScopeGrid,
   Wrapper,
 } from "./Profile.styles.js";
+import { useMicrosoftProfile } from "../../hooks/useMicrosoftProfile";
 
 function Profile() {
   const authSession = getAuthSession();
+  const { profile, loading, error } = useMicrosoftProfile();
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading profile</div>;
+  }
+
+  console.log({ profile });
   return (
     <AuthLayout>
       <Wrapper>
