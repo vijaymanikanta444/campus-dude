@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
@@ -14,7 +13,6 @@ import {
   CustomStack,
 } from "./Login.styles.js";
 import { isAuthConfigured, loginRequest } from "../../authConfig.js";
-import { storeAuthSession } from "../../authSession.js";
 
 const MicrosoftLogo = () => (
   <svg
@@ -33,7 +31,6 @@ const MicrosoftLogo = () => (
 
 function Login() {
   const { instance } = useMsal();
-  const navigate = useNavigate();
   const isAuthenticated = useIsAuthenticated();
 
   const actionLabel = useMemo(
@@ -62,9 +59,6 @@ function Login() {
             <Typography variant="h4" component="h1" fontWeight={800}>
               Welcome back
             </Typography>
-            {/* <Typography variant="body1" color="text.secondary" maxWidth="50ch">
-              Sign in to access the React SPA using your Microsoft account.
-            </Typography> */}
           </Stack>
 
           <ButtonRow>

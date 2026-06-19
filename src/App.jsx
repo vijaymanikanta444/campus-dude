@@ -1,9 +1,8 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import { useIsAuthenticated, useMsal } from "@azure/msal-react";
-import Login from "./components/Login/Login.jsx";
-import Dashboard from "./pages/Dashboard/Dashboard.jsx";
-import Profile from "./pages/Profile/Profile.jsx";
 import { useEffect } from "react";
+import { useIsAuthenticated, useMsal } from "@azure/msal-react";
+
+import AppRouter from "./routes/AppRouter";
+import Loader from "./components/Loader/Loader.jsx";
 import { storeAuthSession } from "./authSession.js";
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
 
   useEffect(() => {
     const account = instance.getActiveAccount() || instance.getAllAccounts()[0];
-    console.log({ account, isAuthenticated });
     if (account) {
       instance.setActiveAccount(account);
       storeAuthSession(account);
@@ -20,38 +18,10 @@ function App() {
   }, [instance, isAuthenticated]);
 
   if (inProgress !== "none") {
-    return <div>Loading...</div>;
+    return <Loader fullscreen text="Authenticating with Microsoft..." />;
   }
 
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />
-        }
-      />
-      <Route
-        path="/login"
-        element={
-          isAuthenticated ? <Navigate to="/dashboard" replace /> : <Login />
-        }
-      />
-      <Route
-        path="/dashboard"
-        element={
-          isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />
-        }
-      />
-      <Route
-        path="/profile"
-        element={
-          isAuthenticated ? <Profile /> : <Navigate to="/login" replace />
-        }
-      />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
-  );
+  return <AppRouter />;
 }
 
 export default App;
